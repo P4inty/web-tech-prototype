@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Barlow";
+    src: url("/Barlow-Regular.ttf");
+}
+
+@layer components {
+    .nav-btn {
+        @apply border border-primary w-full text-2xl transition text-left p-4 h-full
+    }
+
+    .nav-btn:hover {
+        @apply bg-primary-dark
+    }
+
+    .nav-btn.active {
+        @apply bg-primary-dark border-b-black
+    }
+
+    .input {
+        @apply border border-primary-dark bg-transparent py-2 px-3 outline-none transition text-secondary
+    }
+
+    .input:focus {
+        @apply border-primary
+    }
+
+    .btn {
+        @apply border border-primary-dark w-full transition p-4 uppercase text-secondary
+    }
+
+    .btn:hover {
+        @apply border-primary bg-primary-dark
+    }
+}

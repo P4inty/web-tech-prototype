@@ -1,0 +1,5 @@
+.DS_Store
+dev.db
+.vscode
+public/upload/*
+!public/upload/.gitkeep
