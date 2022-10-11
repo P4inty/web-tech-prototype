@@ -2,6 +2,8 @@
     import type { MetaData } from "../types/file.type";
     import Dropzone from "../lib/dropzone.svelte";
     import { FileApi } from "../api/file";
+    import { ViewManager } from "../stores/view";
+    import { Views } from "../enums/views";
 
     let file: File = null;
     let meta: MetaData = {
@@ -25,7 +27,9 @@
 
     function upload() {
         FileApi.uploadMetadata(meta).then((res) =>
-            FileApi.uploadFile(file, res.data.uri)
+            FileApi.uploadFile(file, res.data.uri).then(() =>
+                ViewManager.goTo(Views.FILES)
+            )
         );
     }
 </script>
@@ -35,13 +39,14 @@
         <Dropzone bind:file />
     {:else}
         <p class="text-2xl mt-4">Additional File Information</p>
-        <div class="flex flex-col space-y-4">
+        <form class="flex flex-col space-y-4" on:submit|preventDefault={upload}>
             <div class="flex flex-col mt-4">
                 <label for="name">Name</label>
                 <input
                     type="text"
                     name="name"
                     class="input"
+                    required
                     bind:value={meta.Name}
                 />
             </div>
@@ -52,6 +57,7 @@
                     cols="30"
                     rows="10"
                     class="input"
+                    required
                     bind:value={meta.Description}
                 />
             </div>
@@ -75,16 +81,18 @@
                         class="bg-transparent w-full outline-none pl-2"
                         on:keydown={(e) => addTag(e)}
                         bind:value={currentTag}
+                        placeholder="Add with (Space)"
                     />
                 </div>
             </div>
             <div class="flex space-x-4">
                 <button
                     class="btn w-1/4 text-primary"
+                    type="button"
                     on:click={() => (file = null)}>Cancel</button
                 >
-                <button class="btn" on:click={upload}>Upload</button>
+                <button class="btn" type="submit">Upload</button>
             </div>
-        </div>
+        </form>
     {/if}
 </div>
