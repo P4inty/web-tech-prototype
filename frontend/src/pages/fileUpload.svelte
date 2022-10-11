@@ -5,22 +5,22 @@
 
     let file: File = null;
     let meta: MetaData = {
-        name: "",
-        description: "",
-        tags: [],
+        Name: "",
+        Description: "",
+        Tags: [],
     };
     let currentTag: String = "";
 
     function addTag(e: any) {
         if ([32, 13].includes(e.keyCode)) {
-            meta.tags = [...meta.tags, { key: currentTag }];
+            meta.Tags = [...meta.Tags, { Key: currentTag }];
             currentTag = "";
         }
     }
 
     function removeTag(i: number) {
-        meta.tags.splice(i, 1);
-        meta.tags = [...meta.tags];
+        meta.Tags.splice(i, 1);
+        meta.Tags = [...meta.Tags];
     }
 
     function upload() {
@@ -42,7 +42,7 @@
                     type="text"
                     name="name"
                     class="input"
-                    bind:value={meta.name}
+                    bind:value={meta.Name}
                 />
             </div>
             <div class="flex flex-col mt-4">
@@ -52,16 +52,16 @@
                     cols="30"
                     rows="10"
                     class="input"
-                    bind:value={meta.description}
+                    bind:value={meta.Description}
                 />
             </div>
             <div class="flex flex-col mt-4">
                 <label for="tags">Tags</label>
                 <div class="input flex">
                     <div class="flex space-x-1">
-                        {#each meta.tags as tag, i}
+                        {#each meta.Tags as tag, i}
                             <span class="bg-primary-dark px-2 flex items-center"
-                                >{tag.key}
+                                >{tag.Key}
                                 <button
                                     class="text-primary hover:text-secondary pl-2"
                                     on:click={() => removeTag(i)}>x</button

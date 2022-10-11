@@ -35,4 +35,16 @@
     .btn:hover {
         @apply border-primary bg-primary-dark
     }
+
+    .table-header {
+        @apply border border-primary bg-primary-dark text-lg py-1 px-3
+    }
+
+    .table-row {
+        @apply border-t border-primary
+    }
+
+    .table-entry {
+        @apply px-3
+    }
 }

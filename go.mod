@@ -3,19 +3,19 @@ module webtech/prototype
 go 1.19
 
 require (
-	github.com/rs/cors v1.8.2
+	github.com/google/uuid v1.3.0
 	github.com/rs/cors/wrapper/gin v0.0.0-20221003140808-fcebdb403f4d
 	gorm.io/gorm v1.24.0
 )
 
 require (
-	github.com/google/uuid v1.3.0 // indirect
 	github.com/mattn/go-sqlite3 v1.14.15 // indirect
+	github.com/rs/cors v1.8.2 // indirect
 )
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/gin-gonic/gin v1.8.1 // indirect
+	github.com/gin-gonic/gin v1.8.1
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.11.1 // indirect

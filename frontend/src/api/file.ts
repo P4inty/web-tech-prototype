@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { MetaData, MetaDataResponse } from '../types/file.type';
+import type { CustomFilesResponse, DownloadFileResponse, MetaData, MetaDataResponse } from '../types/file.type';
 
 export class FileApi {
 
@@ -9,7 +9,7 @@ export class FileApi {
         return await axios.post(this._BASE_URL + "/upload/meta", data)
     }
 
-    static async uploadFile(file: File, uri: String) {
+    static async uploadFile(file: File, uri: String): Promise<any> {
         const data = new FormData()
         data.append("file", file)
         return await axios.post(this._BASE_URL + `/upload/${uri}`, data, {
@@ -17,5 +17,9 @@ export class FileApi {
                 'Content-Type': 'multipart/form-data',
             }
         })
+    }
+
+    static async getFiles(): Promise<CustomFilesResponse> {
+        return await axios.get(this._BASE_URL + "/uploads")
     }
 }
