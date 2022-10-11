@@ -2,21 +2,21 @@ import type { Tag } from './tag.type'
 
 
 export interface MetaData {
-    Name: String
-    Description: String
+    Name: string
+    Description: string
     Tags: Tag[]
 }
 
 export interface MetaDataResponse {
     data: {
-        uri: String
+        uri: string
     }
 }
 
 export interface CustomFile extends MetaData {
-    ID: Number
-    Uri: String
-    CreatedAt: Date
+    ID: number
+    Uri: string
+    CreatedAt: string
 }
 
 export interface CustomFilesResponse {
