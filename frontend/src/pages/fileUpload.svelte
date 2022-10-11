@@ -11,7 +11,7 @@
         Description: "",
         Tags: [],
     };
-    let currentTag: String = "";
+    let currentTag: string = "";
 
     function addTag(e: any) {
         if ([32, 13].includes(e.keyCode)) {
@@ -78,7 +78,7 @@
                     <input
                         type="text"
                         name="tags"
-                        class="bg-transparent w-full outline-none pl-2"
+                        class="bg-transparent w-full outline-none pl-2 placeholder-primary-dark"
                         on:keydown={(e) => addTag(e)}
                         bind:value={currentTag}
                         placeholder="Add with (Space)"
