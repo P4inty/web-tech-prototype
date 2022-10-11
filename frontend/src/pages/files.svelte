@@ -27,7 +27,7 @@
 
 <div class="m-4">
     <div class="flex justify-end">
-        <div class="flex flex-col w-1/4 mb-4">
+        <div class="flex flex-col w-full md:w-1/4 mb-4">
             <label for="search">Search</label>
             <input
                 type="text"
@@ -38,47 +38,49 @@
             />
         </div>
     </div>
-    <table class="table-auto w-full">
-        <thead class="text-left">
-            <tr>
-                <th class="table-header">ID</th>
-                <th class="table-header">Filename</th>
-                <th class="table-header">Description</th>
-                <th class="table-header">Creation</th>
-                <th class="table-header">Tags</th>
-                <th class="table-header" />
-            </tr>
-        </thead>
-        <tbody>
-            {#each query.length > 0 ? searchResults : files as file}
-                <tr class="table-row">
-                    <td class="table-entry">{file.ID}</td>
-                    <td class="table-entry">{file.Name}</td>
-                    <td class="table-entry">{file.Description}</td>
-                    <td class="table-entry"
-                        >{new Date(file.CreatedAt).toLocaleDateString()}</td
-                    >
-                    <td class="space-x-1 items-stretch">
-                        {#each file.Tags as tag}
-                            <button
-                                class="bg-primary-dark px-2 hover:text-secondary hover:bg-primary"
-                                on:click={() => {
-                                    query = tag.Key;
-                                    search();
-                                }}>{tag.Key}</button
-                            >
-                        {/each}
-                    </td>
-                    <td>
-                        <a
-                            class="btn border-y-0 block text-center"
-                            href={import.meta.env.VITE_API_URL +
-                                `/download/${file.Uri}`}
-                            download>Download</a
-                        >
-                    </td>
+    <div class="overflow-x-auto">
+        <table class="table-auto w-full">
+            <thead class="text-left">
+                <tr>
+                    <th class="table-header">ID</th>
+                    <th class="table-header">Filename</th>
+                    <th class="table-header">Description</th>
+                    <th class="table-header">Creation</th>
+                    <th class="table-header">Tags</th>
+                    <th class="table-header" />
                 </tr>
-            {/each}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {#each query.length > 0 ? searchResults : files as file}
+                    <tr class="table-row">
+                        <td class="table-entry">{file.ID}</td>
+                        <td class="table-entry">{file.Name}</td>
+                        <td class="table-entry">{file.Description}</td>
+                        <td class="table-entry"
+                            >{new Date(file.CreatedAt).toLocaleDateString()}</td
+                        >
+                        <td class="space-y-1 items-stretch">
+                            {#each file.Tags as tag}
+                                <button
+                                    class="bg-primary-dark px-2 hover:text-secondary hover:bg-primary mr-1"
+                                    on:click={() => {
+                                        query = tag.Key;
+                                        search();
+                                    }}>{tag.Key}</button
+                                >
+                            {/each}
+                        </td>
+                        <td>
+                            <a
+                                class="btn border-y-0 block text-center"
+                                href={import.meta.env.VITE_API_URL +
+                                    `/download/${file.Uri}`}
+                                download>Download</a
+                            >
+                        </td>
+                    </tr>
+                {/each}
+            </tbody>
+        </table>
+    </div>
 </div>

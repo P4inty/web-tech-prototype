@@ -5,8 +5,8 @@
     const { view } = ViewManager;
 </script>
 
-<div class="flex w-full space-x-4 items-stretch">
-    <div class="w-1/4 pt-4">
+<div class="flex w-full space-x-4 items-stretch px-4">
+    <div class="w-1/2 md:w-1/4 pt-4">
         <button
             class="nav-btn"
             class:active={$view === Views.UPLOAD_FILE}
@@ -16,7 +16,7 @@
             <span class="text-xs block mt-4">Upload all your files here.</span>
         </button>
     </div>
-    <div class="w-1/4 pt-4">
+    <div class="w-1/2 md:w-1/4 pt-4">
         <button
             class="nav-btn"
             class:active={$view === Views.FILES}
