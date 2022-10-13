@@ -3,7 +3,7 @@
 ## Setup
 
 ### Backend
-1. `go get`
+1. `go mod download && go mod verify`
 2. `go run .`
 
 ### Frontend
