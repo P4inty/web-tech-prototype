@@ -1,9 +1,9 @@
 import axios from 'axios';
-import type { CustomFilesResponse, DownloadFileResponse, MetaData, MetaDataResponse } from '../types/file.type';
+import type { CustomFilesResponse, MetaData, MetaDataResponse } from '../types/file.type';
 
 export class FileApi {
 
-    static _BASE_URL = import.meta.env.VITE_API_URL
+    static _BASE_URL = window.location.origin + import.meta.env.VITE_API_PORT
 
     static async uploadMetadata(data: MetaData): Promise<MetaDataResponse> {
         return await axios.post(this._BASE_URL + "/upload/meta", data)

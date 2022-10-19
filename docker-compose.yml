@@ -6,6 +6,8 @@ services:
     restart: "always"
     networks:
       - "backend.network"
+    volumes:
+      - "/media:/public/upload:rw"
 
   frontend:
     image: ghcr.io/p4inty/web-tech-prototype-frontend:main
