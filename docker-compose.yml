@@ -2,7 +2,7 @@ services:
   backend:
     image: ghcr.io/p4inty/web-tech-prototype:main
     ports:
-      - "8080:8080"
+      - "1337:8080"
     restart: "always"
     networks:
       - "backend.network"
@@ -11,6 +11,7 @@ services:
     image: ghcr.io/p4inty/web-tech-prototype-frontend:main
     ports:
       - "80:80"
+    restart: "always"
     networks:
       - "backend.network"
 
