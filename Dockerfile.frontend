@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY ./frontend .
 
+ENV VITE_API_URL=http://localhost:8080
+
 RUN npm install && npm run build
 
 FROM nginx:alpine
