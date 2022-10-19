@@ -15,7 +15,7 @@ func main() {
 
 	r := gin.Default()
 	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:5173", "https://hoppscotch.io"},
+		AllowedOrigins:   []string{"*"},
 		AllowCredentials: true,
 		Debug:            true,
 	})
