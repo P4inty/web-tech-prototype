@@ -73,7 +73,7 @@
                         <td>
                             <a
                                 class="btn border-y-0 block text-center"
-                                href={import.meta.env.VITE_API_URL +
+                                href={FileApi.BASE_URL +
                                     `/download/${file.Uri}`}
                                 download>Download</a
                             >
