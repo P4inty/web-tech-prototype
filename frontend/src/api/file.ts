@@ -3,9 +3,10 @@ import type { CustomFilesResponse, MetaData, MetaDataResponse } from '../types/f
 
 export class FileApi {
 
-    static BASE_URL = window.location.origin + import.meta.env.VITE_API_PORT
+    static BASE_URL = "http://" + window.location.hostname + import.meta.env.VITE_API_PORT
 
     static async uploadMetadata(data: MetaData): Promise<MetaDataResponse> {
+        console.log(this.BASE_URL + "/upload/meta")
         return await axios.post(this.BASE_URL + "/upload/meta", data)
     }
 

@@ -42,7 +42,6 @@
         <table class="table-auto w-full">
             <thead class="text-left">
                 <tr>
-                    <th class="table-header">ID</th>
                     <th class="table-header">Filename</th>
                     <th class="table-header">Description</th>
                     <th class="table-header">Creation</th>
@@ -53,7 +52,6 @@
             <tbody>
                 {#each query.length > 0 ? searchResults : files as file}
                     <tr class="table-row">
-                        <td class="table-entry">{file.ID}</td>
                         <td class="table-entry">{file.Name}</td>
                         <td class="table-entry">{file.Description}</td>
                         <td class="table-entry"

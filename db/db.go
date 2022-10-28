@@ -1,15 +1,17 @@
 package db
 
 import (
+	"context"
 	"log"
 	"os"
 
+	"cloud.google.com/go/firestore"
+	firebase "firebase.google.com/go"
 	"github.com/joho/godotenv"
-	"gorm.io/driver/sqlite"
-	"gorm.io/gorm"
+	"google.golang.org/api/option"
 )
 
-var DB *gorm.DB
+var Db *firestore.Client
 
 func Init() {
 	err := godotenv.Load()
@@ -17,14 +19,28 @@ func Init() {
 		log.Print("No .env file detected trying to access os variabels...")
 	}
 
-	if len(os.Getenv("DB_NAME")) == 0 {
-		log.Fatal("DB_NAME not set.")
+	if len(os.Getenv("PROJECT_ID")) == 0 {
+		log.Fatal("PROJECT_ID not set.")
 	}
 
-	connection, err := gorm.Open(sqlite.Open(os.Getenv("DB_NAME")), &gorm.Config{})
+	ctx := context.Background()
+	var app *firebase.App
+	if os.Getenv("GIN_MODE") == "release" {
+		conf := &firebase.Config{ProjectID: os.Getenv(("PROJECT_ID"))}
+		app, err = firebase.NewApp(ctx, conf)
+	} else {
+		opt := option.WithCredentialsFile("firebase.json")
+		app, err = firebase.NewApp(context.Background(), nil, opt)
+
+	}
+
 	if err != nil {
-		panic("Failed to connect database")
+		log.Fatalln(err)
 	}
 
-	DB = connection
+	client, err := app.Firestore(ctx)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	Db = client
 }

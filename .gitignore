@@ -3,3 +3,4 @@ dev.db
 .vscode
 public/upload/*
 !public/upload/.gitkeep
+firebase.json

@@ -1,21 +1,20 @@
 package file
 
 import (
-	"gorm.io/gorm"
+	"time"
 )
 
 type File struct {
-	gorm.Model
 	Name        string `binding:"required"`
 	Description string `binding:"required"`
 	Uri         string
 	Tags        []Tag
+	CreatedAt   time.Time
+	UpdatedAt   time.Time
 }
 
 type Tag struct {
-	gorm.Model
-	Key    string `binding:"required"`
-	FileID uint
+	Key string `binding:"required"`
 }
 
 type MetaData struct {
