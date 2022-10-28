@@ -18,7 +18,6 @@
         searchResults = files.filter((file) => {
             if (file.CreatedAt.toLowerCase().includes(q)) return true;
             if (file.Description.toLowerCase().includes(q)) return true;
-            if (file.ID.toString() === q) return true;
             if (file.Tags.some((tag) => tag.Key.toLowerCase().includes(q)))
                 return true;
         });

@@ -6,12 +6,14 @@ import (
 	"os"
 
 	"cloud.google.com/go/firestore"
+	"cloud.google.com/go/storage"
 	firebase "firebase.google.com/go"
 	"github.com/joho/godotenv"
 	"google.golang.org/api/option"
 )
 
 var Db *firestore.Client
+var Bu *storage.BucketHandle
 
 func Init() {
 	err := godotenv.Load()
@@ -26,11 +28,17 @@ func Init() {
 	ctx := context.Background()
 	var app *firebase.App
 	if os.Getenv("GIN_MODE") == "release" {
-		conf := &firebase.Config{ProjectID: os.Getenv(("PROJECT_ID"))}
+		conf := &firebase.Config{
+			ProjectID:     os.Getenv("PROJECT_ID"),
+			StorageBucket: os.Getenv("PROJECT_ID") + ".appspot.com",
+		}
 		app, err = firebase.NewApp(ctx, conf)
 	} else {
 		opt := option.WithCredentialsFile("firebase.json")
-		app, err = firebase.NewApp(context.Background(), nil, opt)
+		conf := &firebase.Config{
+			StorageBucket: os.Getenv("PROJECT_ID") + ".appspot.com",
+		}
+		app, err = firebase.NewApp(context.Background(), conf, opt)
 
 	}
 
@@ -43,4 +51,15 @@ func Init() {
 		log.Fatalln(err)
 	}
 	Db = client
+
+	s, err := app.Storage(ctx)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	b, err := s.DefaultBucket()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	Bu = b
 }

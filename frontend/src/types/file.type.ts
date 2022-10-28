@@ -14,7 +14,6 @@ export interface MetaDataResponse {
 }
 
 export interface CustomFile extends MetaData {
-    ID: number
     Uri: string
     CreatedAt: string
 }
