@@ -12,6 +12,7 @@ RUN CGO_ENABLED=1 GOOS=linux go build -a -ldflags '-linkmode external -extldflag
 
 FROM scratch
 COPY --from=build /app/main .
-ENV DB_NAME=dev.db
+ENV PROJECT_ID=web-tech-b4fa9
+ENV GIN_MODE=release
 EXPOSE 8080
 CMD [ "./main" ]
