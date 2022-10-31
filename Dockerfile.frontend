@@ -5,6 +5,7 @@ WORKDIR /app
 COPY ./frontend .
 
 ENV VITE_API_PORT=:1337
+#ENV VITE_API_URL=
 
 RUN npm install && npm run build
 
