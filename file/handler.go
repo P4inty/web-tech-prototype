@@ -101,6 +101,7 @@ func All(c *gin.Context) {
 			break
 		}
 		if err != nil {
+			log.Panicln(err.Error())
 			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
 				"message": "Something went wrong on our side",
 			})
@@ -108,6 +109,7 @@ func All(c *gin.Context) {
 		}
 		var f File
 		if err := doc.DataTo(&f); err != nil {
+			log.Panicln(err.Error())
 			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
 				"message": "Something went wrong on our side",
 			})
