@@ -16,7 +16,7 @@ RUN apk --update add ca-certificates
 FROM scratch
 ENV PATH=/bin
 COPY --from=certs /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-COPY --from=build /app/main /bin/.
+COPY --from=build /app/main ./bin/
 ENV PROJECT_ID=web-tech-b4fa9
 EXPOSE 8080
-CMD [ "/bin/main" ]
+CMD [ "./bin/main" ]
