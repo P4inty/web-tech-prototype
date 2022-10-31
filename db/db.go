@@ -34,7 +34,7 @@ func Init() {
 		}
 		app, err = firebase.NewApp(ctx, conf)
 	} else {
-		opt := option.WithCredentialsFile("firebase.json")
+		opt := option.WithCredentialsFile("secrets/firebase.json")
 		conf := &firebase.Config{
 			ProjectID:     os.Getenv("PROJECT_ID"),
 			StorageBucket: os.Getenv("PROJECT_ID") + ".appspot.com",
