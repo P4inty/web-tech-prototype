@@ -4,3 +4,6 @@ dev.db
 public/upload/*
 !public/upload/.gitkeep
 firebase.json
+*.tfstate
+*.tfstate.*
+**/.terraform/*
